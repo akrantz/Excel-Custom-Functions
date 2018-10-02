@@ -9,7 +9,7 @@
 	<ProviderName>Contoso</ProviderName>
 	<DefaultLocale>en-US</DefaultLocale>
 	<DisplayName DefaultValue="Excel Custom Functions" />
-	<Description DefaultValue="Samples to test custom functions" />
+	<Description DefaultValue="Write your own Excel functions in JavaScript." />
 	<Hosts>
 		<Host Name="Workbook" />
 	</Hosts>

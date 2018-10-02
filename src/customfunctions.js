@@ -1,6 +1,20 @@
-﻿
-function add(first, second){
+﻿function add(first, second) {
   return first + second;
+}
+
+function clock(callback) {
+  const timer = setInterval(() => {
+    const time = currentTime();
+    callback.setResult(time);
+  }, 1000);
+
+  callback.onCanceled = () => {
+    clearInterval(timer);
+  };
+}
+
+function currentTime() {
+  return new Date().toLocaleTimeString();
 }
 
 function increment(incrementBy, callback) {
@@ -15,5 +29,15 @@ function increment(incrementBy, callback) {
   };
 }
 
-CustomFunctionMappings.ADD = add;
-CustomFunctionMappings.INCREMENT = increment;
+function logMessage(message) {
+  console.log(message);
+
+  return message;
+}
+
+if (typeof(CustomFunctionMappings) !== 'undefined') {
+  CustomFunctionMappings.ADD = add;
+  CustomFunctionMappings.CLOCK = clock;
+  CustomFunctionMappings.INCREMENT = increment;
+  CustomFunctionMappings.LOG = logMessage;
+}

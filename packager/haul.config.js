@@ -12,12 +12,16 @@ function createHaulConfig() {
       uwp: 'UWP'
     },
     webpack: options => {
-      const { platform, bundle } = options;
+      const { platform, dev, bundle } = options;
       const providesModuleNodeModules = [];
 
       if (bundle) {
         throw new Error('This config is only used to serve up a bundle file, not as a complete build solution');
       }
+
+      //
+      //  output bundle
+      //
 
       //  configure webpack to produce bundle files with the same name as each entry file.
       //  choose the appropriate bundle file extension, based on the platform.
@@ -35,11 +39,13 @@ function createHaulConfig() {
         require.resolve('./platform-bundle-initcore-placeholder.js')
       );
 
-      //  webpack configuration        
+      //
+      //  webpack configuration
+      //
+
       const factory = createWebpackConfig({
         ...options,
-        entry: { index: [`./src/customfunctions.js`] },
-        devtool: "inline-source-map"
+        entry: { index: ['./src/customfunctions.js'] }
       });
       let config = factory({
         ...options,
@@ -54,7 +60,10 @@ function createHaulConfig() {
       const pbBootstrapperPath = join(__dirname, 'platform-bundle-bootstrapper.js');
       config.entry.index.unshift(pbBootstrapperPath);
 
-      // webpack: module rules
+      //
+      //  webpack: module rules
+      //
+
       const babelLoaderRule = config.module.rules[1];
       if (!babelLoaderRule.use[0].loader.includes('babel-loader')) {
         throw new Error('Failed to find babel-loader rule in the webpack configuration');
@@ -74,6 +83,12 @@ function createHaulConfig() {
 
       // Remove the case sensitive checks for now -- haul adds this as the first plugin
       config.plugins.shift();
+      // const jsonWithRegEx = (_key, value) => {
+      //   if (value instanceof RegExp) return value.toString();
+      //   return value;
+      // };
+      // console.log(JSON.stringify(config, jsonWithRegEx, 2));
+      // console.log(JSON.stringify(options, jsonWithRegEx, 2));
 
       return config;
     }
