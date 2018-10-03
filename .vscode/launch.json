@@ -5,6 +5,29 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Haul Compiler",
+      "type": "node",
+      "request": "launch",      
+      "program": "${workspaceFolder}/node_modules/haul/src/compiler/worker/index.js",
+      "env": {
+        "HAUL_PLATFORM": "win32",
+        "HAUL_DIRECTORY": "${workspaceFolder}/node_modules/haul/src/compiler/worker",
+        "HAUL_OPTIONS": "{\"configPath\": \"c:\\dev\\test\\excel-custom-functions-debugging\\Excel-Custom-Functions\\packager\\haul.config.js\",\"configOptions\":{\"root\":\"c:\\dev\\test\\excel-custom-functions-debugging\\Excel-Custom-Functions\",\"dev\":true,\"minify\":false,\"port\":8081}}",
+        "HAUL_SOCKET_ADDRESS": "//./pipe/tmp/HAUL_SOCKET_40755_.socket",
+      },
+      "autoAttachChildProcesses": true,
+      "stopOnEntry": true
+    },
+    {
+      "name": "Haul Packager",
+      "type": "node",
+      "request": "launch",      
+      "program": "${workspaceFolder}/node_modules/haul/bin/cli.js",
+      "args": ["start", "--config", "./packager/haul.config.js" ],
+      "autoAttachChildProcesses": true,
+      "stopOnEntry": false
+    },
+    {
       "name": "Excel Desktop",
       "type": "node",
       "request": "launch",
