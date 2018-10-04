@@ -25,6 +25,12 @@
             "problemMatcher": []
         },
         {
+            "label": "npm: start-desktop-direct",
+            "type": "npm",
+            "script": "start-desktop-direct",
+            "problemMatcher": []
+        },
+        {
             "type": "npm",
             "script": "stop",
             "problemMatcher": []
@@ -41,10 +47,27 @@
             "problemMatcher": []
         },
         {
-            "label": "Debugging",
+            "label": "Debugging: Desktop (Proxy)",
             "dependsOn": [
                 "npm: dev-server",
                 "npm: packager",
+                "npm: watch"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Debugging: Desktop (Direct)",
+            "dependsOn": [
+                "npm: dev-server",
+                "npm: watch",
+                "npm: start-desktop-direct"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Debugging: Online",
+            "dependsOn": [
+                "npm: dev-server",
                 "npm: watch"
             ],
             "problemMatcher": []
@@ -55,6 +78,6 @@
                 "npm: stop",
                 "npm: unload"
             ]
-        }
+        },
     ]
 }

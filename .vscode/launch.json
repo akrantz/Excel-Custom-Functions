@@ -16,6 +16,17 @@
       "autoAttachChildProcesses": true,
       "sourceMaps": true,
       "postDebugTask": "Stop Debugging"
+    },
+    {
+      "name": "Excel Desktop (Direct)",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "protocol": "inspector",
+      "sourceMaps": true,
+      "timeout": 600000,
+      "trace": true,
+      "preLaunchTask": "Debugging: Desktop (Direct)"
     }
   ]
 }
