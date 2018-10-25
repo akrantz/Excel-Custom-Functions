@@ -94,7 +94,7 @@ function createHaulConfig() {
       });
 
       // Setup platform file resolution
-      config.resolve.extensions = ['bundle', 'jsbundle', 'js', 'ts'];
+      config.resolve.extensions = ['.bundle', '.jsbundle', '.js', '.ts'];
 
       config.output.filename = outputFilename;
 

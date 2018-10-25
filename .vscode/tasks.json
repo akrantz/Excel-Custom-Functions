@@ -28,6 +28,13 @@
             "label": "npm: start-desktop-direct",
             "type": "npm",
             "script": "start-desktop-direct",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": true
+            },
             "problemMatcher": []
         },
         {
@@ -58,8 +65,6 @@
         {
             "label": "Debugging: Desktop (Direct)",
             "dependsOn": [
-                "npm: dev-server",
-                "npm: watch",
                 "npm: start-desktop-direct"
             ],
             "problemMatcher": []

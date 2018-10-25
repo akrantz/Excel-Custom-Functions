@@ -6,10 +6,11 @@
   "scripts": {
     "start": "npm run start-desktop",
     "start-desktop": "office-addin-debugging start manifest.xml --source-bundle-url-path index.win32 --dev-server \"npm run dev-server\" --dev-server-url https://localhost:3000/index.html --packager \"npm run packager\"",
-    "start-desktop-direct": "start office-addin-debugging start manifest.xml --debug-method direct",
+    "start-desktop-direct": "office-addin-debugging start manifest.xml --debug-method direct",
     "start-web": "start npm run dev-server",
     "stop": "office-addin-dev-settings clear manifest.xml && npm run unload",
     "build": "webpack -p --mode production",
+    "dev-build": "webpack -p --mode development",
     "dev-server": "webpack-dev-server --mode development --https --key ./certs/server.key --cert ./certs/server.crt --cacert ./certs/ca.crt --port 3000 --hotOnly",
     "packager": "haul start --config ./packager/haul.config.js",
     "sideload": "office-toolbox sideload -m manifest.xml -a excel",
