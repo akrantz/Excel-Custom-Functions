@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Excel Desktop",
+      "name": "Excel Desktop (Proxy)",
       "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/node_modules/office-addin-debugging/lib/debugging.js",
@@ -27,6 +27,7 @@
       "timeout": 600000,
       "trace": true,
       "preLaunchTask": "Debugging: Desktop (Direct)",
+      "postDebugTask": "Stop Debugging",
       "outFiles": [ "${workspaceFolder}/dist/win32/ship/**/*.js" ]
     },
     // {
