@@ -16,7 +16,7 @@
       "autoAttachChildProcesses": true,
 
       //"preLaunchTask": "Debugging: Desktop (Proxy)",
-      "postDebugTask": "Stop Debugging"
+      "postDebugTask": "Stop Debug"
     },
     {
       "name": "Excel Desktop (Direct)",
@@ -26,17 +26,18 @@
       "protocol": "inspector",
       "timeout": 600000,
       "trace": true,
-      "preLaunchTask": "Debugging: Desktop (Direct)",
-      "postDebugTask": "Stop Debugging",
-      "outFiles": [ "${workspaceFolder}/dist/win32/ship/**/*.js" ]
+      "preLaunchTask": "Debug: Desktop (Direct)",
+      "postDebugTask": "Stop Debug",
+      "outFiles": [ "${workspaceFolder}/dist/**/*.js" ]
     },
     // {
     //   "name": "Excel Online (Chrome)",
     //   "type": "chrome",
     //   "request": "launch",
-    //   //"url": "https://www.office.com/launch/excel",
-    //   "url": "https://microsoft-my.sharepoint.com/:x:/r/personal/adamk_microsoft_com/_layouts/15/doc2.aspx?sourcedoc=%7B3C39D593-0730-444E-B908-C2B3A1B9D477%7D&file=Book%2023.xlsx&action=editnew&mobileredirect=true&wdNewAndOpenCt=1539209312344&wdPreviousSession=3b14a267-847b-449e-a2ce-a73e0a531a4b&wdOrigin=ohpAppStartPages",
+    //   // go to https://www.office.com/launch/excel and create an Excel document and put the url here:
+    //   "url": "",
     //   "webRoot": "${workspaceFolder}",
+    //   "preLaunchTask": "Debug: Online"
     // },
     // {
     //   "name": "Attach",

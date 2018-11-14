@@ -54,7 +54,7 @@
             "problemMatcher": []
         },
         {
-            "label": "Debugging: Desktop (Proxy)",
+            "label": "Debug: Desktop (Proxy)",
             "dependsOn": [
                 "npm: dev-server",
                 "npm: packager",
@@ -63,14 +63,14 @@
             "problemMatcher": []
         },
         {
-            "label": "Debugging: Desktop (Direct)",
+            "label": "Debug: Desktop (Direct)",
             "dependsOn": [
                 "npm: start-desktop-direct"
             ],
             "problemMatcher": []
         },
         {
-            "label": "Debugging: Online",
+            "label": "Debug: Online",
             "dependsOn": [
                 "npm: dev-server",
                 "npm: watch"
@@ -78,7 +78,7 @@
             "problemMatcher": []
         },
         {
-            "label": "Stop Debugging",
+            "label": "Stop Debug",
             "dependsOn": [
                 "npm: stop",
             ]
