@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/en-us/json-schemas/office-js/custom-functions.schema.json",
   "functions": [
     {
-      "id": "ADD",
-      "name": "ADD",
+      "id": "CONTOSO.ADD",
+      "name": "CONTOSO.ADD",
       "description": "Add two numbers",
       "helpUrl": "http://www.contoso.com/help",
       "result": {
@@ -26,8 +26,8 @@
       ]
     },
     {
-      "id": "INCREMENT",
-      "name": "INCREMENT",
+      "id": "CONTOSO.INCREMENT",
+      "name": "CONTOSO.INCREMENT",
       "description": "Periodically increment a value",
       "helpUrl": "http://www.contoso.com/help",
       "result": {
@@ -48,8 +48,8 @@
       }
     },
     {
-      "id": "CLOCK",
-      "name": "CLOCK",
+      "id": "CONTOSO.CLOCK",
+      "name": "CONTOSO.CLOCK",
       "description": "Show the current time.",
       "helpUrl": "http://www.contoso.com/help",
       "result": {
@@ -64,8 +64,8 @@
       }
     },
     {
-      "id": "LOG",
-      "name": "LOG",
+      "id": "CONTOSO.LOG",
+      "name": "CONTOSO.LOG",
       "description": "Write a message to the log.",
       "helpUrl": "http://www.contoso.com/help",
       "result": {
@@ -78,6 +78,45 @@
           "description": "The message.",
           "type": "string",
           "dimensionality": "scalar"
+        }
+      ]
+    },
+    {
+      "id": "CONTOSO.JAVASCRIPT",
+      "name": "CONTOSO.JAVASCRIPT",
+      "description": "Evaluate JavaScript",
+      "helpUrl": "http://www.contoso.com/help",
+      "result": {
+        "type": "any",
+        "dimensionality": "scalar"
+      },
+      "parameters": [
+        {
+          "name": "script",
+          "description": "JavaScript to execute.",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "id": "CONTOSO.REGEX.TEST",
+      "name": "CONTOSO.REGEX.TEST",
+      "description": "Test whether a string matches a regular expression.",
+      "helpUrl": "http://www.contoso.com/help",
+      "result": {
+        "type": "boolean",
+        "dimensionality": "scalar"
+      },
+      "parameters": [
+        {
+          "name": "string",
+          "description": "String to test.",
+          "type": "string"
+        },
+        {
+          "name": "pattern",
+          "description": "Regular expression pattern",
+          "type": "string"
         }
       ]
     }

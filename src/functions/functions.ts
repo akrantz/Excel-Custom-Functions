@@ -60,10 +60,27 @@ function logMessage(message: string): string {
 }
 
 /**
+ * Evaluate JavaScript code.
+ */
+function javascript(script: string): any {
+  return eval(script);
+}
+
+/**
+ * Test whether a regular expression matches a string.
+ */
+function regexTest(string: string, pattern: string): boolean {
+  return new RegExp(pattern).test(string);
+}
+
+
+/**
  * Defines the implementation of the custom functions
  * for the function id defined in the metadata file (functions.json).
  */
-CustomFunctions.associate("ADD", add);
-CustomFunctions.associate("CLOCK", clock);
-CustomFunctions.associate("INCREMENT", increment);
-CustomFunctions.associate("LOG", logMessage);
+CustomFunctions.associate("CONTOSO.ADD", add);
+CustomFunctions.associate("CONTOSO.CLOCK", clock);
+CustomFunctions.associate("CONTOSO.INCREMENT", increment);
+CustomFunctions.associate("CONTOSO.JAVASCRIPT", javascript);
+CustomFunctions.associate("CONTOSO.LOG", logMessage);
+CustomFunctions.associate("CONTOSO.REGEX.TEST", regexTest);
