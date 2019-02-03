@@ -61,6 +61,10 @@
             "problemMatcher": []
         },
         {
+            "label": "Launch: Desktop",
+            "dependsOn": ["Watch", "Debug: Desktop"]
+        },
+        {
             "label": "Stop Debug",
             "type": "npm",
             "script": "stop",
@@ -75,11 +79,26 @@
             "label": "Watch",
             "type": "npm",
             "script": "watch",
+            "isBackground": true,
             "presentation": {
                 "clear": true,
                 "panel": "dedicated",
             },
-            "problemMatcher": []
+            "problemMatcher": {
+                "owner": "typescript",
+                "fileLocation": "relative",
+                "pattern": {
+                    "regexp": "^([^\\s].*)\\((\\d+|\\d+,\\d+|\\d+,\\d+,\\d+,\\d+)\\):\\s+(error|warning|info)\\s+(TS\\d+)\\s*:\\s*(.*)$",
+                    "file": 1,
+                    "location": 2,
+                    "severity": 3,
+                    "code": 4,
+                    "message": 5
+                },
+                "background": {
+                    "activeOnStart": true,
+                }
+            }
         }
     ]
 }

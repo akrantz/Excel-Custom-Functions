@@ -12,7 +12,7 @@
       "protocol": "inspector",
       "timeout": 600000,
       "trace": true,
-      "preLaunchTask": "Debug: Desktop",
+      "preLaunchTask": "Launch: Desktop",
       "postDebugTask": "Stop Debug",
       "outFiles": [ "${workspaceFolder}/dist/**/*.js" ]
     }
