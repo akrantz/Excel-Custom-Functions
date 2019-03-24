@@ -57,7 +57,7 @@ function numberToWords(n: number): string {
   let words: string;
 
   if (n === 0) {
-    words = numberToWords(n);
+    words = wordsForNumbers[n];
   } else {
     let current = n;
     let wordGroups = [];
