@@ -1,19 +1,27 @@
 const devCerts = require("office-addin-dev-certs");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const fs = require("fs");
-const webpack = require("webpack");
+const webpack = require('webpack');
 
-module.exports = async (env, options) => {
+module.exports = async (env, options)  => {
   const dev = options.mode === "development";
   const config = {
     devtool: "source-map",
     entry: {
+      commands: "./src/commands/commands.ts",
       functions: "./src/functions/functions.ts",
-      polyfill: 'babel-polyfill',
-      taskpane: "./src/taskpane/taskpane.ts",
-      commands: "./src/commands/commands.ts"
+      taskpane: [
+          'react-hot-loader/patch',
+          './src/taskpane/index.tsx',
+      ],
+      vendor: [
+        'react',
+        'react-dom',
+        'core-js',
+        'office-ui-fabric-react'
+      ]
     },
     resolve: {
       extensions: [".ts", ".tsx", ".html", ".js"]
@@ -21,26 +29,28 @@ module.exports = async (env, options) => {
     module: {
       rules: [
         {
-          test: /\.ts$/,
-          exclude: /node_modules/,
-          use: 'babel-loader'
-        },
-        {
           test: /\.tsx?$/,
-          exclude: /node_modules/,
-          use: "ts-loader"
+          use: [
+              'react-hot-loader/webpack',
+              'ts-loader'
+          ],
+          exclude: /node_modules/
         },
         {
-          test: /\.html$/,
-          exclude: /node_modules/,
-          use: "html-loader"
+          test: /\.css$/,
+          use: ['style-loader', 'css-loader']
         },
         {
-          test: /\.(png|jpg|jpeg|gif)$/,
-          use: "file-loader"
-        }
-      ]
-    },
+          test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
+          use: {
+              loader: 'file-loader',
+              query: {
+                  name: 'assets/[name].[ext]'
+                }
+              }  
+            }   
+          ]
+    },    
     plugins: [
       new CleanWebpackPlugin(dev ? [] : ["dist"]),
       new CopyWebpackPlugin([
@@ -54,22 +64,33 @@ module.exports = async (env, options) => {
         template: "./src/functions/functions.html",
         chunks: ['polyfill', 'functions']
       }),
-      new HtmlWebpackPlugin({
-        filename: "taskpane.html",
-        template: "./src/taskpane/taskpane.html",
-        chunks: ['polyfill', 'taskpane']
-      }),
       new CopyWebpackPlugin([
         {
           to: "taskpane.css",
           from: "./src/taskpane/taskpane.css"
         }
       ]),
+      new ExtractTextPlugin('[name].[hash].css'),
       new HtmlWebpackPlugin({
-        filename: "commands.html",
-        template: "./src/commands/commands.html",
-        chunks: ["polyfill", "commands"]
+        filename: "taskpane.html",
+          template: './src/taskpane/taskpane.html',
+          chunks: ['taskpane', 'vendor', 'polyfills']
       }),
+      new HtmlWebpackPlugin({
+          filename: "commands.html",
+          template: "./src/commands/commands.html",
+          chunks: ["commands"]
+        }),
+      new CopyWebpackPlugin([
+          {
+              from: './assets',
+              ignore: ['*.scss'],
+              to: 'assets',
+          }
+      ]),
+      new webpack.ProvidePlugin({
+        Promise: ["es6-promise", "Promise"]
+      })
     ],
     devServer: {
       headers: {
