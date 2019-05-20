@@ -41,18 +41,20 @@ function currentTime(): string {
  * @param incrementBy Amount to increment
  * @param invocation Custom function handler 
  */
-function increment(incrementBy: number, invocation: CustomFunctions.StreamingInvocation<number>): void {
-  let result = 0;
+function incrementMatrix(incrementBy: number, invocation: CustomFunctions.StreamingInvocation<number[][]>): void {
+  let current: number = 0;
+  let matrix: number[][] = [];
   const timer = setInterval(() => {
-    result += incrementBy;
-    invocation.setResult(result);
+    current += incrementBy;
+    matrix.push([current]);
+    invocation.setResult(matrix);
   }, 1000);
 
   invocation.onCanceled = () => {
     clearInterval(timer);
   };
 }
-CustomFunctions.associate("INCREMENT", increment);
+CustomFunctions.associate("INCREMENTMATRIX", incrementMatrix);
 
 /**
  * Writes a message to console.log().
